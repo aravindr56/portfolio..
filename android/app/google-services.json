@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "42609036285",
+    "project_id": "myportfolio-afa4c",
+    "storage_bucket": "myportfolio-afa4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42609036285:android:8034b9690e3f70436f6794",
+        "android_client_info": {
+          "package_name": "com.example.my_portfolio_website"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWKfFeTyziDTh-ah7dq9gh49h12Cug9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
