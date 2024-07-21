@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio_website/globals/my_colors.dart';
 import 'package:my_portfolio_website/globals/my_text_style.dart';
+import '../models/project_model.dart';
 import 'project_detail.dart';
 import '../components/helper_class.dart';
 import '../globals/constants.dart';
@@ -19,14 +20,52 @@ class _MyPortfolioState extends State<MyPortfolio> {
 
   List<Project> projects = [
     Project(
-      title: 'App Development',
-      description: 'This is a description for App Development project.',
-      images: [ProfileAssets.work1, ProfileAssets.work1],
+      title: 'Expense Tracker App',
+      description: 'The Expense Tracker App helps users manage their finances by tracking income and expenses. Key features include secure user authentication,easy transaction logging.',
+      images: [
+        ProfileAssets.project1,
+        ProfileAssets.exp1,
+        ProfileAssets.exp2,
+        ProfileAssets.exp3,
+        ProfileAssets.exp4,
+        ProfileAssets.exp5,
+        ProfileAssets.exp6,
+        ProfileAssets.exp7,
+        ProfileAssets.exp8
+      ],
     ),
     Project(
-      title: 'Website Development',
-      description: 'This is a description for Website Development project.',
-      images: [ProfileAssets.work1, ProfileAssets.work1],
+      title: 'Weather App',
+      description: 'The Weather App provides real-time weather updates and forecasts.current weather conditions,location-based tracking and integrated weather APIs,',
+      images: [ProfileAssets.project2,
+        ProfileAssets.wthr1,
+        ProfileAssets.wthr2,
+        ProfileAssets.wthr3,
+        ProfileAssets.wthr4,
+        ProfileAssets.wthr5,
+      ],
+    ),
+    Project(
+      title: 'To Do App',
+      description: 'The To-Do App helps users manage their tasks efficiently with features like task creation, categorization, due date reminders.Interface built using Flutter.',
+      images: [
+        ProfileAssets.project3,
+        ProfileAssets.to1,
+        ProfileAssets.to2,
+        ProfileAssets.to3,
+        ProfileAssets.to4,
+      ],
+    ),
+    Project(
+      title: 'Bike Rental App',
+      description: 'The Bike Rental App provides for users to find, rent, and manage bike rentals. Users browse available bikes, view rental locations,ensuring a smooth experience.',
+      images: [
+        ProfileAssets.project4,
+        ProfileAssets.bike1,
+        ProfileAssets.bike2,
+        ProfileAssets.bike3,
+        ProfileAssets.bike4,
+      ],
     ),
   ];
 
@@ -106,7 +145,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                       image: AssetImage(project.images[0]),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -132,6 +171,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                       ),
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           project.title,
@@ -186,4 +226,5 @@ class _MyPortfolioState extends State<MyPortfolio> {
     );
   }
 }
+
 

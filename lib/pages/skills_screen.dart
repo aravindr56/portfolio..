@@ -2,53 +2,140 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio_website/globals/my_colors.dart';
 import 'package:my_portfolio_website/globals/my_text_style.dart';
-import 'package:my_portfolio_website/globals/profile_assets.dart';
 import '../components/helper_class.dart';
 import '../globals/constants.dart';
-import '../globals/skill_set.dart';
+import '../globals/profile_assets.dart';
+import '../models/skill_model.dart';
 
-class SkillScreen extends StatelessWidget {
+class SkillScreen extends StatefulWidget {
+  const SkillScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SkillScreen> createState() => _SkillScreenState();
+}
+
+class _SkillScreenState extends State<SkillScreen> {
   final List<Skill> skills = [
-    Skill(name: 'Flutter', image: ProfileAssets.flutter, description: 'A UI toolkit for building natively compiled applications.'),
-    Skill(name: 'Dart', image: ProfileAssets.dart, description: 'A programming language optimized for building mobile apps.'),
-    Skill(name: 'Firebase', image: ProfileAssets.fire, description: 'A platform developed by Google for creating mobile and web applications.'),
-    // Add more skills here
+    Skill(
+      title: 'Flutter',
+      description: 'Experience with building cross-platform mobile apps.',
+      image: ProfileAssets.flutter,
+    ),
+    Skill(
+      title: 'Dart',
+      description: 'Proficient in Dart programming language.',
+      image: ProfileAssets.dart,
+    ),
+    Skill(
+      title: 'Firebase',
+      description: 'Skilled in Firebase for backend services.',
+      image: ProfileAssets.fire,
+    ),
+    Skill(
+      title: 'Git',
+      description: 'Experienced with version control using Git.',
+      image: ProfileAssets.github,
+    ),
+    Skill(
+      title: 'UI/UX Design',
+      description: 'Passionate about designing user-friendly interfaces.',
+      image: ProfileAssets.ui,
+    ),
+    Skill(
+      title: 'API Integration',
+      description: 'Knowledge of integrating RESTful APIs.',
+      image: ProfileAssets.api,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return HelperClass(
-      mobile: buildSkillGrid(),
-      tablet: buildSkillGrid(),
-      desktop: buildSkillGrid(),
-      paddingWidth: size.width * 0.04,
+      mobile: Column(
+        children: [
+          buildSkillsText(),
+          Constants.sizedBox(height: 60.0),
+          buildSkillsGridView(crossAxisCount: 1),
+        ],
+      ),
+      tablet: Column(
+        children: [
+          buildSkillsText(),
+          Constants.sizedBox(height: 60.0),
+          buildSkillsGridView(crossAxisCount: 2),
+        ],
+      ),
+      desktop: Column(
+        children: [
+          buildSkillsText(),
+          Constants.sizedBox(height: 60.0),
+          buildSkillsGridView(crossAxisCount: 3),
+        ],
+      ),
+      paddingWidth: size.width * 0.1,
       bgColor: MyColors.bgColor,
     );
   }
 
-  Widget buildSkillGrid() {
-    return Column(
-      children: [
-        buildSkillsText(),
-        Constants.sizedBox(height: 60.0),
-        Expanded(
-          child: GridView.builder(
-            itemCount: skills.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
+  GridView buildSkillsGridView({required int crossAxisCount}) {
+    return GridView.builder(
+      itemCount: skills.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        mainAxisExtent: 280,
+        mainAxisSpacing: 24,
+        crossAxisSpacing: 24,
+      ),
+      itemBuilder: (context, index) {
+        var skill = skills[index];
+
+        return FadeInUpBig(
+          duration: const Duration(milliseconds: 1600),
+          child: Container(
+            width: 350,
+            height: 430,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+            decoration: BoxDecoration(
+              color: MyColors.bgColor2,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black54,
+                  spreadRadius: 4.0,
+                  blurRadius: 4.5,
+                  offset: Offset(3.0, 4.5),
+                )
+              ],
             ),
-            itemBuilder: (context, index) {
-              return FadeInUp(
-                duration: Duration(milliseconds: 500 * (index + 1)),
-                child: SkillContainer(skill: skills[index]),
-              );
-            },
+            child: Column(
+              children: [
+                Image.asset(
+                  skill.image,
+                  width: 130,
+                  height: 95,
+                ),
+                Constants.sizedBox(height: 30.0),
+                Text(
+                  skill.title,
+                  style: MyTextStyle.montserratStyle(
+                      color: Colors.white, fontSize: 22.0),
+                ),
+                Constants.sizedBox(height: 12.0),
+                Text(
+                  skill.description,
+                  style: MyTextStyle.normalStyle(fontSize: 14.0),
+                  textAlign: TextAlign.center,
+                ),
+                Constants.sizedBox(height: 20.0),
+              ],
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 
@@ -72,55 +159,6 @@ class SkillScreen extends StatelessWidget {
   }
 }
 
-class SkillContainer extends StatelessWidget {
-  final Skill skill;
-
-  const SkillContainer({Key? key, required this.skill}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            skill.image,
-            width: 60,
-            height: 60,
-          ),
-          SizedBox(height: 10),
-          Text(
-            skill.name,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            skill.description,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 
 

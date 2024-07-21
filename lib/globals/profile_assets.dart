@@ -5,9 +5,12 @@ class ProfileAssets{
   static String profile='assets/images/psp.jpg';
   static String analyst='assets/images/analytics.png';
   static String share='assets/images/share.png';
-  static String flutter='assets/images/flut.jpg';
+  static String flutter='assets/images/flutt.jpg';
   static String dart='assets/images/dart.jpg';
   static String fire='assets/images/fire.jpg';
+  static String api='assets/images/api.jpg';
+  static String ui='assets/images/ui.jpg';
+  static String project1='assets/images/logo.jpg';
   static String exp1='assets/images/exp1.jpg';
   static String exp2='assets/images/exp2.jpg';
   static String exp3='assets/images/exp3.jpg';
@@ -16,5 +19,20 @@ class ProfileAssets{
   static String exp6='assets/images/exp6.jpg';
   static String exp7='assets/images/exp7.jpg';
   static String exp8='assets/images/exp8.jpg';
-  static String work1='assets/images/exp1.jpg';
+  static String project2='assets/images/logo3.jpg';
+  static String wthr1='assets/images/wthr1.jpg';
+  static String wthr2='assets/images/wthr2.jpg';
+  static String wthr3='assets/images/wthr3.jpg';
+  static String wthr4='assets/images/wthr4.jpg';
+  static String wthr5='assets/images/wthr5.jpg';
+  static String project3='assets/images/to5.jpg';
+  static String to1='assets/images/to1.jpg';
+  static String to2='assets/images/to2.jpg';
+  static String to3='assets/images/to3.jpg';
+  static String to4='assets/images/to4.jpg';
+  static String project4='assets/images/logo2.jpg';
+  static String bike1='assets/images/bike1.jpg';
+  static String bike2='assets/images/bike2.jpg';
+  static String bike3='assets/images/bike3.jpg';
+  static String bike4='assets/images/bike4.jpg';
 }

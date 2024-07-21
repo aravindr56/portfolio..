@@ -52,7 +52,7 @@ class _MyServicesState extends State<MyServices> {
             },
             child: buildAnimatedContainer(
               title: 'Website Development',
-              asset: ProfileAssets.work1,
+              asset: ProfileAssets.flutter,
               hover: isWebsite,
             ),
           ),
@@ -90,7 +90,7 @@ class _MyServicesState extends State<MyServices> {
                 },
                 child: buildAnimatedContainer(
                   title: 'Website Development',
-                  asset: ProfileAssets.work1,
+                  asset: ProfileAssets.analyst,
                   hover: isWebsite,
                 ),
               ),
@@ -130,7 +130,7 @@ class _MyServicesState extends State<MyServices> {
                 },
                 child: buildAnimatedContainer(
                   title: 'Website Development',
-                  asset: ProfileAssets.work1,
+                  asset: ProfileAssets.analyst,
                   hover: isWebsite,
                 ),
               ),
