@@ -7,6 +7,7 @@ import 'package:my_portfolio_website/globals/profile_assets.dart';
 
 import '../components/helper_class.dart';
 import '../globals/constants.dart';
+
 class MyServices extends StatefulWidget {
   const MyServices({Key? key}) : super(key: key);
 
@@ -15,18 +16,16 @@ class MyServices extends StatefulWidget {
 }
 
 class _MyServicesState extends State<MyServices> {
-  bool isApp = false, isGraphic = false, isDataAnalyst = false;
+  bool isApp = false, isWebsite = false, isDataAnalyst = false;
 
   final onHoverActive = Matrix4.identity()..translate(0, -10, 0);
   final onHoverRemove = Matrix4.identity()..translate(0, 0, 0);
-
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return HelperClass(
       mobile: Column(
-        // mainAxisSize: MainAxisSize.min,
         children: [
           buildMyServicesText(),
           Constants.sizedBox(height: 60.0),
@@ -44,7 +43,19 @@ class _MyServicesState extends State<MyServices> {
             ),
           ),
           Constants.sizedBox(height: 24.0),
-
+          InkWell(
+            onTap: () {},
+            onHover: (value) {
+              setState(() {
+                isWebsite = value;
+              });
+            },
+            child: buildAnimatedContainer(
+              title: 'Website Development',
+              asset: ProfileAssets.work1,
+              hover: isWebsite,
+            ),
+          ),
           Constants.sizedBox(height: 24.0),
         ],
       ),
@@ -70,6 +81,19 @@ class _MyServicesState extends State<MyServices> {
                 ),
               ),
               Constants.sizedBox(width: 24.0),
+              InkWell(
+                onTap: () {},
+                onHover: (value) {
+                  setState(() {
+                    isWebsite = value;
+                  });
+                },
+                child: buildAnimatedContainer(
+                  title: 'Website Development',
+                  asset: ProfileAssets.work1,
+                  hover: isWebsite,
+                ),
+              ),
             ],
           ),
           Constants.sizedBox(height: 26.0),
@@ -97,7 +121,19 @@ class _MyServicesState extends State<MyServices> {
                 ),
               ),
               Constants.sizedBox(width: 24.0),
-              Constants.sizedBox(width: 24.0),
+              InkWell(
+                onTap: () {},
+                onHover: (value) {
+                  setState(() {
+                    isWebsite = value;
+                  });
+                },
+                child: buildAnimatedContainer(
+                  title: 'Website Development',
+                  asset: ProfileAssets.work1,
+                  hover: isWebsite,
+                ),
+              ),
             ],
           ),
         ],
@@ -143,8 +179,7 @@ class _MyServicesState extends State<MyServices> {
       decoration: BoxDecoration(
         color: MyColors.bgColor2,
         borderRadius: BorderRadius.circular(30),
-        border:
-        hover ? Border.all(color: MyColors.themeColor, width: 3) : null,
+        border: hover ? Border.all(color: MyColors.themeColor, width: 3) : null,
         boxShadow: const [
           BoxShadow(
             color: Colors.black54,
@@ -170,13 +205,14 @@ class _MyServicesState extends State<MyServices> {
           ),
           Constants.sizedBox(height: 12.0),
           Text(
-            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-                ' The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,',
+            title == 'App Development'
+                ? 'As a fresher Flutter developer, I am passionate about creating innovative and functional mobile applications. My expertise lies in leveraging the power of Flutter to build cross-platform apps that provide seamless user experiences on both Android and iOS devices.'
+                : 'I specialize in creating responsive and visually appealing websites. Using the latest web technologies and best practices, I build websites that are not only aesthetically pleasing but also provide an excellent user experience.',
             style: MyTextStyle.normalStyle(fontSize: 14.0),
             textAlign: TextAlign.center,
           ),
           Constants.sizedBox(height: 20.0),
-          MyButtons.buildMaterialButton(buttonName: 'Read More', onTap: () {})
+          // MyButtons.buildMaterialButton(buttonName: 'Read More', onTap: () {})
         ],
       ),
     );

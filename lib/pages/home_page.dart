@@ -124,9 +124,7 @@ class _HomePageState extends State<HomePage> {
         FadeInDown(
           duration: const Duration(milliseconds: 1600),
           child: Text(
-            'In publishing and graphic design, Lorem ipsum is a placeholder '
-                'text commonly used to demonstrate the visual form of a document'
-                ' or a typeface without relying on meaningful content.',
+          'Hello! Im Aravind R, a passionate and dedicated fresher Flutter developer. I specialize in building beautiful and responsive mobile applications using the Flutter framework. With a keen eye for design and a strong commitment to writing clean, maintainable code, I strive to create seamless user experiences',
             style: MyTextStyle.normalStyle(),
           ),
         ),

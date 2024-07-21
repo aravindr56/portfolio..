@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       home: PageStorage(
         bucket: bucket,
-        child: MainDashBoard(),
+        child: const MainDashBoard(),
       ),
     );
   }

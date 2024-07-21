@@ -2,10 +2,11 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio_website/globals/my_colors.dart';
 import 'package:my_portfolio_website/globals/my_text_style.dart';
-
+import 'project_detail.dart';
 import '../components/helper_class.dart';
 import '../globals/constants.dart';
 import '../globals/profile_assets.dart';
+
 class MyPortfolio extends StatefulWidget {
   const MyPortfolio({Key? key}) : super(key: key);
 
@@ -14,15 +15,19 @@ class MyPortfolio extends StatefulWidget {
 }
 
 class _MyPortfolioState extends State<MyPortfolio> {
-  final onH0verEffect = Matrix4.identity()..scale(1.0);
+  final onHoverEffect = Matrix4.identity()..scale(1.0);
 
-  List images = <String>[
-    ProfileAssets.work1,
-    ProfileAssets.work1,
-    ProfileAssets.work1,
-    ProfileAssets.work1,
-    ProfileAssets.work1,
-    ProfileAssets.work1,
+  List<Project> projects = [
+    Project(
+      title: 'App Development',
+      description: 'This is a description for App Development project.',
+      images: [ProfileAssets.work1, ProfileAssets.work1],
+    ),
+    Project(
+      title: 'Website Development',
+      description: 'This is a description for Website Development project.',
+      images: [ProfileAssets.work1, ProfileAssets.work1],
+    ),
   ];
 
   var hoveredIndex;
@@ -36,7 +41,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         children: [
           buildProjectText(),
           Constants.sizedBox(height: 40.0),
-          buildProjectGridView(crossAxisCount: 1)
+          buildProjectGridView(crossAxisCount: 1),
         ],
       ),
       tablet: Column(
@@ -44,7 +49,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         children: [
           buildProjectText(),
           Constants.sizedBox(height: 40.0),
-          buildProjectGridView(crossAxisCount: 2)
+          buildProjectGridView(crossAxisCount: 2),
         ],
       ),
       desktop: Column(
@@ -62,7 +67,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
 
   GridView buildProjectGridView({required int crossAxisCount}) {
     return GridView.builder(
-      itemCount: images.length,
+      itemCount: projects.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,11 +77,18 @@ class _MyPortfolioState extends State<MyPortfolio> {
         crossAxisSpacing: 24,
       ),
       itemBuilder: (context, index) {
-        var image = images[index];
+        var project = projects[index];
         return FadeInUpBig(
           duration: const Duration(milliseconds: 1600),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProjectDetail(project: project),
+                ),
+              );
+            },
             onHover: (value) {
               setState(() {
                 if (value) {
@@ -93,41 +105,43 @@ class _MyPortfolioState extends State<MyPortfolio> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                        image: AssetImage(image), fit: BoxFit.fill),
+                      image: AssetImage(project.images[0]),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 Visibility(
                   visible: index == hoveredIndex,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 600),
-                    transform: index == hoveredIndex ? onH0verEffect : null,
+                    transform: index == hoveredIndex ? onHoverEffect : null,
                     curve: Curves.easeIn,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 16),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: LinearGradient(
-                          colors: [
-                            MyColors.themeColor.withOpacity(1.0),
-                            MyColors.themeColor.withOpacity(0.9),
-                            MyColors.themeColor.withOpacity(0.8),
-                            MyColors.themeColor.withOpacity(0.6),
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter),
+                        colors: [
+                          MyColors.themeColor.withOpacity(1.0),
+                          MyColors.themeColor.withOpacity(0.9),
+                          MyColors.themeColor.withOpacity(0.8),
+                          MyColors.themeColor.withOpacity(0.6),
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
                     ),
                     child: Column(
                       children: [
                         Text(
-                          'App Development',
+                          project.title,
                           style: MyTextStyle.montserratStyle(
                               color: Colors.black87, fontSize: 20),
                         ),
                         Constants.sizedBox(height: 15.0),
                         Text(
-                          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-                          style:
-                          MyTextStyle.normalStyle(color: Colors.black87),
+                          project.description,
+                          style: MyTextStyle.normalStyle(color: Colors.black87),
                           textAlign: TextAlign.center,
                         ),
                         Constants.sizedBox(height: 30.0),
@@ -140,7 +154,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                             height: 25,
                             fit: BoxFit.fill,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -165,10 +179,11 @@ class _MyPortfolioState extends State<MyPortfolio> {
               text: 'Projects',
               style: MyTextStyle.headingStyles(
                   fontSize: 30, color: MyColors.robinEdgeBlue),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
+

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio_website/globals/my_text_style.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
 import '../globals/constants.dart';
 import '../globals/my_colors.dart';
+import '../globals/my_text_style.dart';
 import 'about_me.dart';
 import 'contact_me.dart';
 import 'footer_class.dart';
 import 'home_page.dart';
 import 'my_portfolio.dart';
 import 'my_services.dart';
+import 'skills_screen.dart';
+
 class MainDashBoard extends StatefulWidget {
   const MainDashBoard({Key? key}) : super(key: key);
 
@@ -27,18 +28,20 @@ class _MainDashBoardState extends State<MainDashBoard> {
     'About',
     'Services',
     'Portfolio',
+    'Skills',
     'Contact',
   ];
 
   var menuIndex = 0;
 
-  final screensList = const <Widget>[
-    HomePage(),
-    AboutMe(),
-    MyServices(),
-    MyPortfolio(),
-    ContactMe(),
-    FooterClass(),
+  final screensList = <Widget>[
+    const HomePage(),
+    const AboutMe(),
+    const MyServices(),
+    const MyPortfolio(),
+     SkillScreen(),
+    const ContactMe(),
+    const FooterClass(),
   ];
 
   Future scrollTo({required int index}) async {

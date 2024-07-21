@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../globals/profile_assets.dart';
 
-
 class ProfileAnimation extends StatefulWidget {
   const ProfileAnimation({Key? key}) : super(key: key);
 
@@ -18,11 +17,12 @@ class _ProfileAnimationState extends State<ProfileAnimation>
   @override
   void initState() {
     super.initState();
-    _controller =
-    AnimationController(vsync: this, duration: const Duration(seconds: 3))
-      ..repeat(reverse: true);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat(reverse: true);
 
-    _animation = Tween(begin: const Offset(0,0.05), end: const Offset(0, 0))
+    _animation = Tween(begin: const Offset(0, 0.05), end: const Offset(0, 0))
         .animate(_controller);
   }
 
@@ -36,11 +36,17 @@ class _ProfileAnimationState extends State<ProfileAnimation>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _animation,
-      child: Image.asset(
-        ProfileAssets.profile,
-        width: 340,
-        height: 450,
-        fit: BoxFit.fill,
+      child: CircleAvatar(
+        radius: 150,
+        backgroundColor: Colors.transparent,
+        child: ClipOval(
+          child: Image.asset(
+            ProfileAssets.profile,
+            width: 250,
+            height: 250,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
