@@ -5,7 +5,7 @@ class ProfileAssets{
   static String profile='assets/images/psp.jpg';
   static String analyst='assets/images/analytics.png';
   static String share='assets/images/share.png';
-  static String flutter='assets/images/flutt.jpg';
+  static String flutter='assets/images/flutter.jpg';
   static String dart='assets/images/dart.jpg';
   static String fire='assets/images/fire.jpg';
   static String api='assets/images/api.jpg';
